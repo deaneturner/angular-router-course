@@ -28,22 +28,26 @@ export class AppComponent implements OnInit {
   ngOnInit() {
 
     // TODO: document, package
-    const appTitle = this.titleService.getTitle();
+    let result = [this.titleService.getTitle()];
     this.router
       .events.pipe(
       filter(event => event instanceof NavigationEnd),
       map(() => {
         let child = this.activatedRoute.firstChild;
+        const titles = [];
         while (child.firstChild) {
           child = child.firstChild;
+          if (child.snapshot.data['title']) {
+            titles.push(child.snapshot.data['title']);
+          }
         }
         if (child.snapshot.data['title']) {
-          return child.snapshot.data['title'];
+          result = titles;
         }
-        return appTitle;
+        return result;
       })
-    ).subscribe((ttl: string) => {
-      this.titleService.setTitle(ttl);
+    ).subscribe((titles: Array<string>) => {
+      this.titleService.setTitle(titles.join(': '));
     });
     // END TODO
 

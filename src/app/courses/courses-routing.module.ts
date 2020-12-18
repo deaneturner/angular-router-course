@@ -15,7 +15,7 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
     data: {
-      title: 'Home Component!'
+      title: 'Home Component'
     }
   },
   {
@@ -32,7 +32,7 @@ const routes: Routes = [
           lessons: LessonsResolver
         },
         data: {
-          title: 'Lessons List Component!'
+          title: 'Lessons List Component'
         }
       },
       {
@@ -42,7 +42,7 @@ const routes: Routes = [
           lesson: LessonDetailResolver
         },
         data: {
-          title: 'Lesson Detail Component!'
+          title: 'Lesson Detail Component'
         }
       }
     ],

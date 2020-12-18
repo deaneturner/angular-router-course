@@ -20,7 +20,7 @@ const routes: Routes = [
     // canLoad: [CanLoadAuthGuard]
     data: {
       preload: false,
-      title: 'Courses!'
+      title: 'Courses'
     }
   },
   {
