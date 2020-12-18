@@ -24,11 +24,12 @@ import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatMomentDateModule} from '@angular/material-moment-adapter';
 import {LoginComponent} from './login/login.component';
-import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
-import {SharedModule} from "./shared/shared.module";
-import {AboutComponent} from "./about/about.component";
-import {HashLocationStrategy, LocationStrategy} from "@angular/common";
+import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
+import {SharedModule} from './shared/shared.module';
+import {AboutComponent} from './about/about.component';
+import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import { ChatComponent } from './chat/chat.component';
+import { TitleService } from './services/title.service';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { ChatComponent } from './chat/chat.component';
     SharedModule
   ],
   providers: [
+    TitleService
   ],
   bootstrap: [AppComponent]
 })

@@ -20,7 +20,7 @@ export class CourseComponent implements OnInit {
 
   constructor(private route: ActivatedRoute) {
     this.title = route.data.pipe(
-      map(d => d.title)
+      map(d => d.title.label)
     );
   }
 

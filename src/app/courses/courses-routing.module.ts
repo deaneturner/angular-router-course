@@ -15,7 +15,9 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
     data: {
-      title: 'Home Component'
+      title: {
+        label: 'Home Component'
+      }
     }
   },
   {
@@ -32,7 +34,9 @@ const routes: Routes = [
           lessons: LessonsResolver
         },
         data: {
-          title: 'Lessons List Component'
+          title: {
+            label: 'Lessons List Component'
+          }
         }
       },
       {
@@ -42,10 +46,25 @@ const routes: Routes = [
           lesson: LessonDetailResolver
         },
         data: {
-          title: 'Lesson Detail Component'
+          title: {
+            label: 'Lesson Detail Component',
+            resolvers: [{
+              resolver: 'lesson',
+              itemKey: 'description'
+            }]
+          }
         }
       }
     ],
+    data: {
+      title: {
+        label: 'Course',
+        resolvers: [{
+          resolver: 'course',
+          itemKey: 'description'
+        }]
+      }
+    },
     resolve: {
       course: CourseResolver
     }

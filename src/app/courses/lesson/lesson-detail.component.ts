@@ -20,7 +20,7 @@ export class LessonDetailComponent implements OnInit {
     console.log('Created LessonDetailComponent...');
 
     this.title = route.data.pipe(
-      map(d => d.title)
+      map(d => d.title.label)
     );
 
   }
