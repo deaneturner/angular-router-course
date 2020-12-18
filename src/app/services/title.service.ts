@@ -44,4 +44,8 @@ export class TitleService {
       this.title.setTitle(titles.map((t) => t.label).join(': '));
     });
   }
+
+  setTitle(title: string) {
+    this.title.setTitle(title);
+  }
 }
