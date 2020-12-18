@@ -3,6 +3,10 @@
 <a class="back" href="javascript:void(0)"
    [routerLink]="['../..']">Back To Course</a>
 
+<div>
+  {{ title | async }}
+</div>
+
 <div class="lesson-detail" *ngIf="(lesson$ | async) as lesson">
 
     <h3>{{lesson.description}}</h3>

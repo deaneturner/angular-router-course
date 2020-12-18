@@ -1,18 +1,20 @@
 <ng-container>
+  <div>
+    {{ title | async }}
+  </div>
+  <div class="course">
 
-    <div class="course">
+    <h2>{{course.description}}</h2>
 
-        <h2>{{course.description}}</h2>
+    <h3 class="discount" *ngIf="couponCode">
+      Use {{couponCode}} for a huge discount!
+    </h3>
 
-        <h3 class="discount" *ngIf="couponCode">
-            Use {{couponCode}} for a huge discount!
-        </h3>
+    <img class="course-thumbnail" [src]="course.iconUrl" *ngIf="course">
 
-        <img class="course-thumbnail" [src]="course.iconUrl" *ngIf="course">
+    <router-outlet></router-outlet>
 
-        <router-outlet></router-outlet>
-
-    </div>
+  </div>
 
 </ng-container>
 
