@@ -22,6 +22,7 @@ export class TitleService {
         while (child.firstChild) {
           child = child.firstChild;
           if (child.snapshot.data['title']) {
+            titles.push(child.snapshot.data['title']);
             const resolvers = child.snapshot.data['title'].resolvers;
             if (resolvers) {
               resolvers.forEach((config => {
@@ -33,7 +34,6 @@ export class TitleService {
                 }
               }));
             }
-            titles.push(child.snapshot.data['title']);
           }
         }
         if (child.snapshot.data['title']) {
@@ -44,9 +44,7 @@ export class TitleService {
     ).subscribe((titles: Array<any>) => {
       if (titles.length) {
         this.routeTitles = titles;
-        // const myTemplate = `${0}${1}${0}!`;
-        // const labelTemplate = this.template(myTemplate);
-        this.title.setTitle(titles.map((t) => t.label).join(': '));
+        this.setTitle();
       }
     });
   }
@@ -65,7 +63,10 @@ export class TitleService {
   }
 
   setTitle(title?: string) {
-    this.title.setTitle(this.routeTitles.map((t) => t.label).join(': '));
+    const label = title || (this.routeTitles.length && this.routeTitles[0].label);
+    if (label) {
+      this.title.setTitle(label);
+    }
   }
 
   templateTest() {

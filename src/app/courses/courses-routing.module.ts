@@ -17,7 +17,7 @@ const routes: Routes = [
     component: HomeComponent,
     data: {
       title: {
-        label: 'Home Component'
+        label: 'Components'
       }
     }
   },
