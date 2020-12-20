@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Course} from '../model/course';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 
 @Component({

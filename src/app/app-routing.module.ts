@@ -9,46 +9,40 @@ import { ChatComponent } from './chat/chat.component';
 
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: '/courses',
-    pathMatch: 'full'
-  },
-  {
-    path: 'courses',
-    loadChildren: () => import('./courses/courses.module')
-      .then(m => m.CoursesModule),
-    // canLoad: [CanLoadAuthGuard]
-    data: {
-      preload: false,
-      title: {
-        label: 'Courses'
-      }
+    {
+      path: "",
+      redirectTo: "/courses",
+        pathMatch: "full"
+    },
+    {
+      path: "courses",
+      loadChildren: () => import('./courses/courses.module')
+                            .then(m => m.CoursesModule),
+        // canLoad: [CanLoadAuthGuard]
+       data: {
+          preload: false,
+         title: {
+           label: 'Courses'
+         }
+       }
+    },
+    {
+        path: "login",
+        component: LoginComponent,
+    },
+    {
+        path: "about",
+        component: AboutComponent
+    },
+    {
+        path: 'helpdesk-chat',
+        component: ChatComponent,
+        outlet: 'chat'
+    },
+    {
+        path: "**",
+        component: PageNotFoundComponent
     }
-  },
-  {
-    path: 'login',
-    component: LoginComponent,
-    data: {
-      title: 'Login Component!'
-    }
-  },
-  {
-    path: 'about',
-    component: AboutComponent
-  },
-  {
-    path: 'helpdesk-chat',
-    component: ChatComponent,
-    outlet: 'chat',
-    data: {
-      title: 'Chat Component!'
-    }
-  },
-  {
-    path: '**',
-    component: PageNotFoundComponent
-  }
 
 ];
 
