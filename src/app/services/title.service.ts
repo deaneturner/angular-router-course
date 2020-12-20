@@ -46,7 +46,7 @@ export class TitleService {
         this.routeTitles = titles;
         // const myTemplate = `${0}${1}${0}!`;
         // const labelTemplate = this.template(myTemplate);
-        this.title.setTitle(this.routeTitles.map((t) => t.label).join(': '));
+        this.title.setTitle(titles.map((t) => t.label).join(': '));
       }
     });
   }
