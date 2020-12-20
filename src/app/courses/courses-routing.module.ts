@@ -9,6 +9,7 @@ import { LessonsResolver } from './services/lessons.resolver';
 import { LessonDetailResolver } from './services/lesson-detail.resolver';
 import { AuthGuard } from '../services/auth.guard';
 import { ConfirmExitGuard } from '../services/confirm-exit.guard';
+import { TitleService } from '../services/title.service';
 
 const routes: Routes = [
   {

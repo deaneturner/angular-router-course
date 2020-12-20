@@ -44,6 +44,9 @@ export class TitleService {
     ).subscribe((titles: Array<any>) => {
       if (titles.length) {
         this.routeTitles = titles;
+        // const myTemplate = `${0}${1}${0}!`;
+        // const labelTemplate = this.template(myTemplate);
+        this.title.setTitle(this.routeTitles.map((t) => t.label).join(': '));
       }
     });
   }
