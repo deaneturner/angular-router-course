@@ -17,10 +17,7 @@ export class TitleService {
       filter(event => event instanceof NavigationEnd),
       map(() => {
         const result = {
-          templates: {
-            label: null,
-            children: []
-          },
+          template: null,
           titles: [{
             label: this.title.getTitle()
           }]
@@ -33,11 +30,7 @@ export class TitleService {
             // route title config
             titles.push(child.snapshot.data['title']);
             if (child.snapshot.data['title'].template) {
-              if (!result.templates.label) {
-                result.templates.label = child.snapshot.data['title'].template;
-              } else {
-                result.templates.children.push(child.snapshot.data['title'].template);
-              }
+              result.template = child.snapshot.data['title'].template;
             }
             // resolvers
             const resolvers = child.snapshot.data['title'].resolvers;
@@ -60,8 +53,8 @@ export class TitleService {
       })
     ).subscribe((config) => {
       if (config.titles.length) {
-        if (config.templates.label) {
-          this.setTitle(config.templates.label(...config.titles.map((t) => t.label)));
+        if (config.template) {
+          this.setTitle(config.template(...config.titles.map((t) => t.label)));
         } else {
           this.setTitle(config.titles[0].label);
         }

@@ -49,7 +49,7 @@ const routes: Routes = [
         data: {
           title: {
             label: 'Lesson Detail Component',
-            template: TitleService.template`${0}`,
+            template: TitleService.template`${3}`,
             resolvers: [{
               resolver: 'lesson',
               itemKey: 'description'
