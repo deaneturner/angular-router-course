@@ -3,7 +3,6 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {LessonDetail} from "../model/lesson-detail";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
-import { TitleService } from '../../services/title.service';
 
 @Component({
   // tslint:disable-next-line:component-selector
