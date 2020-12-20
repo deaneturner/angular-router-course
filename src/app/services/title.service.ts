@@ -7,7 +7,6 @@ import { Title } from '@angular/platform-browser';
   providedIn: 'root',
 })
 export class TitleService {
-  public routeTitles;
 
   constructor(
     private title: Title,
@@ -45,12 +44,39 @@ export class TitleService {
     ).subscribe((titles: Array<any>) => {
       if (titles.length) {
         this.routeTitles = titles;
-        this.title.setTitle(titles.map((t) => t.label).join(': '));
       }
+    });
+  }
+  public routeTitles;
+
+  static template(strings, ...keys) {
+    return (function (...values) {
+      const dict = values[values.length - 1] || {};
+      const result = [strings[0]];
+      keys.forEach(function (key, i) {
+        const value = Number.isInteger(key) ? values[key] : dict[key];
+        result.push(value, strings[i + 1]);
+      });
+      return result.join('');
     });
   }
 
   setTitle(title?: string) {
-    this.title.setTitle(title || this.routeTitles.map((t) => t.label).join(': '));
+    this.title.setTitle(this.routeTitles.map((t) => t.label).join(': '));
+  }
+
+  templateTest() {
+    const t1Closure = TitleService.template`${0}${1}${0}!`;
+    // let t1Closure = template(["","","","!"],0,1,0);
+    t1Closure('Y', 'A');                      // "YAY!"
+
+    const t2Closure = TitleService.template`${0} ${'foo'}!`;
+    // let t2Closure = template([""," ","!"],0,"foo");
+    t2Closure('Hello', {foo: 'World'}); // "Hello World!"
+
+    const t3Closure = TitleService.template`I'm ${'name'}. I'm almost ${'age'} years old.`;
+    // let t3Closure = template(["I'm ", ". I'm almost ", " years old."], "name", "age");
+    t3Closure('foo', {name: 'MDN', age: 30}); // "I'm MDN. I'm almost 30 years old."
+    t3Closure({name: 'MDN', age: 30}); // "I'm MDN. I'm almost 30 years old."
   }
 }
