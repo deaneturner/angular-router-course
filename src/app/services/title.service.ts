@@ -7,6 +7,8 @@ import { Title } from '@angular/platform-browser';
   providedIn: 'root',
 })
 export class TitleService {
+  public routeTitles;
+
   constructor(
     private title: Title,
     private router: Router,
@@ -41,11 +43,14 @@ export class TitleService {
         return result;
       })
     ).subscribe((titles: Array<any>) => {
-      this.title.setTitle(titles.map((t) => t.label).join(': '));
+      if (titles.length) {
+        this.routeTitles = titles;
+        // this.title.setTitle(titles.map((t) => t.label).join(': '));
+      }
     });
   }
 
-  setTitle(title: string) {
-    this.title.setTitle(title);
+  setTitle(title?: string) {
+    this.title.setTitle(title || this.routeTitles.map((t) => t.label).join(': '));
   }
 }
