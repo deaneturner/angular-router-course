@@ -6,22 +6,18 @@ import { map } from 'rxjs/operators';
 
 
 @Component({
-  // tslint:disable-next-line:component-selector
   selector: 'course',
   templateUrl: './course.component.html',
   styleUrls: ['./course.component.css']
 })
 export class CourseComponent implements OnInit {
 
-  course: Course;
-  title: Observable<string>;
+  course:Course;
 
-  couponCode: string;
+  couponCode:string;
 
-  constructor(private route: ActivatedRoute) {
-    this.title = route.data.pipe(
-      map(d => d.title.label)
-    );
+  constructor(private route:ActivatedRoute) {
+
   }
 
 

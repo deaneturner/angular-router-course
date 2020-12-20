@@ -5,7 +5,6 @@ import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
 
 @Component({
-  // tslint:disable-next-line:component-selector
   selector: 'lesson',
   templateUrl: './lesson-detail.component.html',
   styleUrls: ['./lesson-detail.component.css']
@@ -13,21 +12,17 @@ import {map} from "rxjs/operators";
 export class LessonDetailComponent implements OnInit {
 
   lesson$: Observable<LessonDetail>;
-  title: Observable<string>;
 
   constructor(private route: ActivatedRoute, private router: Router) {
 
-    console.log('Created LessonDetailComponent...');
-
-    this.title = route.data.pipe(
-      map(d => d.title.label)
-    );
+    console.log("Created LessonDetailComponent...");
 
   }
 
   ngOnInit() {
 
       this.lesson$ = this.route.data.pipe(map(data => data["lesson"]));
+
   }
 
     previous(lesson: LessonDetail) {

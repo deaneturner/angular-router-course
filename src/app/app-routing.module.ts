@@ -7,6 +7,7 @@ import { CanLoadAuthGuard } from './services/can-load-auth.guard';
 import { CustomPreloadingStrategy } from './services/custom-preloading.strategy';
 import { ChatComponent } from './chat/chat.component';
 
+
 const routes: Routes = [
   {
     path: '',
@@ -53,23 +54,24 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(
-      routes, {
-        preloadingStrategy: CustomPreloadingStrategy,
-        scrollPositionRestoration: 'enabled',
-        paramsInheritanceStrategy: 'always',
-        relativeLinkResolution: 'corrected',
-        malformedUriErrorHandler:
-          (error: URIError, urlSerializer: UrlSerializer, url: string) =>
-            urlSerializer.parse('/page-not-found')
-      })
+      RouterModule.forRoot(
+          routes, {
+              preloadingStrategy: CustomPreloadingStrategy,
+              scrollPositionRestoration:'enabled',
+              paramsInheritanceStrategy: 'always',
+              relativeLinkResolution: 'corrected',
+              malformedUriErrorHandler:
+                  (error: URIError, urlSerializer: UrlSerializer, url:string) =>
+                    urlSerializer.parse("/page-not-found")
+          })
   ],
   exports: [RouterModule],
   providers: [
-    CanLoadAuthGuard,
-    CustomPreloadingStrategy
+      CanLoadAuthGuard,
+      CustomPreloadingStrategy
   ]
 })
 export class AppRoutingModule {
+
 
 }

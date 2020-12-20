@@ -76,15 +76,15 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forChild(routes)
+      RouterModule.forChild(routes)
   ],
   exports: [RouterModule],
   providers: [
-    CourseResolver,
-    LessonsResolver,
-    LessonDetailResolver,
-    AuthGuard,
-    ConfirmExitGuard
+      CourseResolver,
+      LessonsResolver,
+      LessonDetailResolver,
+      AuthGuard,
+      ConfirmExitGuard
   ]
 })
 export class CoursesRoutingModule {
