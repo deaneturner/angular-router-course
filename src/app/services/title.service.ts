@@ -12,17 +12,34 @@ export class TitleService {
     private title: Title,
     private router: Router,
     private activatedRoute: ActivatedRoute) {
-    let result = [this.title.getTitle()];
     this.router
       .events.pipe(
       filter(event => event instanceof NavigationEnd),
       map(() => {
+        const result = {
+          templates: {
+            label: null,
+            children: []
+          },
+          titles: [{
+            label: this.title.getTitle()
+          }]
+        };
         let child = this.activatedRoute.firstChild;
         const titles = [];
         while (child.firstChild) {
           child = child.firstChild;
           if (child.snapshot.data['title']) {
+            // route title config
             titles.push(child.snapshot.data['title']);
+            if (child.snapshot.data['title'].template) {
+              if (!result.templates.label) {
+                result.templates.label = child.snapshot.data['title'].template;
+              } else {
+                result.templates.children.push(child.snapshot.data['title'].template);
+              }
+            }
+            // resolvers
             const resolvers = child.snapshot.data['title'].resolvers;
             if (resolvers) {
               resolvers.forEach((config => {
@@ -37,18 +54,20 @@ export class TitleService {
           }
         }
         if (child.snapshot.data['title']) {
-          result = titles;
+          result.titles = titles;
         }
         return result;
       })
-    ).subscribe((titles: Array<any>) => {
-      if (titles.length) {
-        this.routeTitles = titles;
-        this.setTitle();
+    ).subscribe((config) => {
+      if (config.titles.length) {
+        if (config.templates.label) {
+          this.setTitle(config.templates.label(...config.titles.map((t) => t.label)));
+        } else {
+          this.setTitle(config.titles[0].label);
+        }
       }
     });
   }
-  public routeTitles;
 
   static template(strings, ...keys) {
     return (function (...values) {
@@ -62,8 +81,7 @@ export class TitleService {
     });
   }
 
-  setTitle(title?: string) {
-    const label = title || (this.routeTitles.length && this.routeTitles[0].label);
+  setTitle(label?: string) {
     if (label) {
       this.title.setTitle(label);
     }

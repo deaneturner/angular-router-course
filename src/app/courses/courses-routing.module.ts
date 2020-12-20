@@ -17,7 +17,7 @@ const routes: Routes = [
     component: HomeComponent,
     data: {
       title: {
-        label: 'Components'
+        label: 'Courses Home'
       }
     }
   },
@@ -49,6 +49,7 @@ const routes: Routes = [
         data: {
           title: {
             label: 'Lesson Detail Component',
+            template: TitleService.template`${0}`,
             resolvers: [{
               resolver: 'lesson',
               itemKey: 'description'
@@ -60,6 +61,7 @@ const routes: Routes = [
     data: {
       title: {
         label: 'Course',
+        template: TitleService.template`${1}`,
         resolvers: [{
           resolver: 'course',
           itemKey: 'description'
