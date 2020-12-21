@@ -34,7 +34,8 @@ interface TitleConfig {
  * Provide a label value to be used as a title.  This label will be captured for advanced usage
  * (see below) and stored in titles array.
  *
- * Note: A label is not required when a template is used - that is when another template does not require its content.
+ * Note: A label property value is not required when a template is used
+ * - that is when another template does not require its content.
  *
  * ```javascript
  * {
