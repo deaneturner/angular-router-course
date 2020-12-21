@@ -24,6 +24,9 @@ interface TitleConfig {
  * Provide this configuration in the 'data' portion of the appropriate route configuration, and
  * the Angular title service will be used set the browser page title (and tab) with a computed label.
  *
+ * Note: Labels must be applied consistently, from a parent down.  Otherwise, navigating to a parent node could
+ * result in the previous label being misapplied.
+ *
  * - providing a simple label will result in a simple transfer of that text
  *
  * - providing a template (advanced) will invoke access to the titles array, and will allow a string template
