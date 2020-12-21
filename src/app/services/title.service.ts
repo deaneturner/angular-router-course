@@ -34,6 +34,8 @@ interface TitleConfig {
  * Provide a label value to be used as a title.  This label will be captured for advanced usage
  * (see below) and stored in titles array.
  *
+ * Note: A label is not required when a template is used - that is when another template does not require its content.
+ *
  * ```javascript
  * {
  *    path: '',
@@ -49,6 +51,8 @@ interface TitleConfig {
  * ## Advanced
  *  Advanced usage involves applying the captured title array to a string template.  The presence of
  *  a template will invoke access to the array, otherwise the current activated route label will be used.
+ *
+ * Note: A label is not required when a template is used - that is when the template does not require its content.
  *
  * ## Captured Label Array
  *  - the parent and current labels are available (e.g. TitleService.template`{1}: ${2})
